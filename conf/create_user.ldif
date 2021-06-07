@@ -1,0 +1,22 @@
+dn: uid=$_USERNAME,ou=Users,$LDAP_RDN
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+sn: $_SURNAME
+givenName: $_GIVENNAME
+cn: $_USERNAME
+uid: $_USERNAME
+userPassword: $_PASSWD_HASH
+uidNumber: $_UID
+gidNumber: $_GID
+homeDirectory: /home/$_USERNAME
+loginShell: /bin/bash
+gecos: $_USERNAME
+description: User account
+shadowLastChange: 0
+
+dn: cn=$_GROUPNAME,ou=Groups,$LDAP_RDN
+objectClass: posixGroup
+cn: $_GROUPNAME
+gidNumber: $_GID
+memberUid: $_USERNAME
