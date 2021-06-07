@@ -1,0 +1,37 @@
+## Generated admin password:
+#slapd	slapd/internal/generated_adminpw	password	
+## Encrypted admin password:
+#slapd	slapd/internal/adminpw	password	
+## Confirm password:
+#slapd	slapd/password2	password	
+## Administrator password:
+#slapd	slapd/password1	password	
+# Move old database?
+slapd	slapd/move_old_database	boolean	true
+# Manual ppolicy schema update recommended
+# Choices: abort installation, continue regardless
+slapd	slapd/ppolicy_schema_needs_update	select	abort installation
+# Do you want the database to be removed when slapd is purged?
+slapd	slapd/purge_database	boolean	false
+# DNS domain name:
+slapd	slapd/domain	string	$LDAP_DOMAIN
+# Dump databases to file on upgrade:
+# Choices: always, when needed, never
+slapd	slapd/dump_database	select	when needed
+# Omit OpenLDAP server configuration?
+slapd	slapd/no_configuration	boolean	false
+# Password mismatch
+slapd	slapd/password_mismatch	note	
+# slapcat failure during upgrade
+slapd	slapd/upgrade_slapcat_failure	error	
+# Organization name:
+slapd	shared/organization	string	aic
+# Database backend to use:
+# Choices: BDB, HDB, MDB
+slapd	slapd/backend	select	MDB
+# Potentially unsafe slapd access control configuration
+slapd	slapd/unsafe_selfwrite_acl	note	
+# Retry configuration?
+slapd	slapd/invalid_config	boolean	true
+# Directory to use for dumped databases:
+slapd	slapd/dump_database_destdir	string	/var/backups/slapd-VERSION

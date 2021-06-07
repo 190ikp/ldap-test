@@ -1,0 +1,7 @@
+dn: ou=Users,$LDAP_RDN
+objectClass: organizationalUnit
+ou: Users
+
+dn: ou=Groups,$LDAP_RDN
+objectClass: organizationalUnit
+ou: Groups

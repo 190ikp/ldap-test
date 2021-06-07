@@ -1,0 +1,24 @@
+# LDAP root account password:
+ldap-auth-config        ldap-auth-config/rootbindpw     password
+# # Password for database login account:
+ldap-auth-config        ldap-auth-config/bindpw password
+# Distinguished name of the search base:
+ldap-auth-config	ldap-auth-config/ldapns/base-dn	string	$LDAP_RDN
+# Does the LDAP database require login?
+ldap-auth-config	ldap-auth-config/dblogin	boolean	false
+# LDAP server Uniform Resource Identifier:
+ldap-auth-config	ldap-auth-config/ldapns/ldap-server	string	ldap://$LDAP_SERVER_FQDN/
+# Should debconf manage LDAP configuration?
+ldap-auth-config	ldap-auth-config/override	boolean	true
+# Make local root Database admin:
+ldap-auth-config	ldap-auth-config/dbrootlogin	boolean	true
+# Reconfigure LDAP with debconf?
+ldap-auth-config	ldap-auth-config/move-to-debconf	boolean	true
+# LDAP version to use:
+# Choices: 3, 2
+ldap-auth-config	ldap-auth-config/ldapns/ldap_version	select	3
+# Local crypt to use when changing passwords:
+# Choices: clear, crypt, nds, ad, exop, md5
+ldap-auth-config	ldap-auth-config/pam_password	select	md5
+# LDAP account for root:
+ldap-auth-config        ldap-auth-config/rootbinddn     string
