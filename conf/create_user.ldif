@@ -14,9 +14,3 @@ loginShell: /bin/bash
 gecos: $_USERNAME
 description: User account
 shadowLastChange: 0
-
-dn: cn=$_GROUPNAME,ou=Groups,$LDAP_RDN
-objectClass: posixGroup
-cn: $_GROUPNAME
-gidNumber: $_GID
-memberUid: $_USERNAME

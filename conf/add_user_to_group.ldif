@@ -1,0 +1,4 @@
+dn: cn=$_GROUPNAME,ou=Groups,$LDAP_RDN
+changetype: modify
+add: memberUid
+memberUid: $_USERNAME

@@ -68,7 +68,10 @@ export _USERNAME=$1
 export _GROUPNAME=$2
 export _SURNAME=$3
 export _GIVENNAME=$4
-export _EMAIL=$5
+# export _EMAIL=$5
+_USERPASSWD=$(./bin/generate_password.sh)
+#shellcheck disable=SC2034
+_PASSWD_HASH="$(slappasswd -s "$_USERPASSWD")"
 
 export _UID
 _UID=$(find_next_uid)
@@ -83,8 +86,11 @@ if [ -z "$_GID" ]; then
   exit 1
 fi
 
-envsubst \$_USERNAME\$_GROUPNAME\$_SURNAME\$_GIVENNAME\$_UID\$_GID\$_PASSWD_HASH \
-  < conf/ldap/create_user.ldif |
+envsubst \$LDAP_RDN\$_USERNAME\$_SURNAME\$_GIVENNAME\$_UID\$_GID\$_PASSWD_HASH \
+  < conf/create_user.ldif |
 ldapadd -x -D "$LDAP_ADMIN_DN" -W
 
-echo -e "ユーザー名: $_USERNAME\n初期パスワード: $_USERPASSWD"
+envsubst \$LDAP_RDN\$_USERNAME\$_GROUPNAME < conf/add_user_to_group.ldif |
+  ldapmodify -Q -Y EXTERNAL -H ldapi:///
+
+echo -e "Username: $_USERNAME\nInitial Password: $_USERPASSWD"

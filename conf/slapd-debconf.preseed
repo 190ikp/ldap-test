@@ -25,7 +25,7 @@ slapd	slapd/password_mismatch	note
 # slapcat failure during upgrade
 slapd	slapd/upgrade_slapcat_failure	error	
 # Organization name:
-slapd	shared/organization	string	aic
+slapd	shared/organization	string	$ORG_SHORT
 # Database backend to use:
 # Choices: BDB, HDB, MDB
 slapd	slapd/backend	select	MDB

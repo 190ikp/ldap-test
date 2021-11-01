@@ -9,5 +9,5 @@ LDAP_PASSWORD="$(sudo cat /etc/ldapscripts/ldapscripts.passwd)"
 export _USERNAME
 _USERNAME=$1
 
-envsubst \$_USERNAME < conf/ldap/expire_password.ldif |
+envsubst \$_USERNAME < conf/expire_password.ldif |
 ldapadd -x -D "$LDAP_ADMIN_DN" -w "$LDAP_PASSWORD"
