@@ -4,7 +4,7 @@ set -euo pipefail
 # functions are ported from /usr/share/ldapscripts/runtime
 get_last_uid() {
   ldapsearch -LLL -x -ZZ \
-    -b ou=Users,dc=ai,dc=hc,dc=keio,dc=ac,dc=jp uidNumber |
+    -b ou=Users,"$LDAP_RDN" uidNumber |
   grep '^uidNumber' |
   sed 's/^uidNumber: //g' |
   uniq |
@@ -20,7 +20,7 @@ local_uid_lookup() {
 
 ldap_uid_lookup() {
   ldapsearch -LLL -x -ZZ \
-    -b ou=Users,dc=ai,dc=hc,dc=keio,dc=ac,dc=jp \
+    -b ou=Users,"$LDAP_RDN" \
     "(&(objectClass=posixAccount)(|(uid=$1)(uidNumber=$1)))" uid |
   grep "^uid: " |
   head -n 1 |
