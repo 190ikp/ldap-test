@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+source env/ldap.sh
+
 # functions are ported from /usr/share/ldapscripts/runtime
 get_last_uid() {
   ldapsearch -LLL -x -ZZ \

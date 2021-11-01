@@ -39,11 +39,11 @@ server() {
     ldapadd -x -D "$LDAP_ADMIN_DN" -W
 
   # set log level to 'stats'. see  olcLogLevel in `man slapd-config`
-  ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f conf/enable_logging.ldif
+  sudo ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f conf/enable_logging.ldif
 
   # TODO: is there a need to set ACL on the priv key?
   sudo setfacl -R -m u:openldap:rx /etc/ssl/private
-  ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f conf/enable_tls.ldif
+  sudo ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f conf/enable_tls.ldif
 
   sudo systemctl restart slapd
 
