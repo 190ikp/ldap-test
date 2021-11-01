@@ -57,7 +57,7 @@ find_next_uid() {
 
 ldap_gid_lookup() {
   ldapsearch -LLL -x -ZZ \
-    -b ou=Groups,dc=ai,dc=hc,dc=keio,dc=ac,dc=jp \
+    -b ou=Groups,"$LDAP_RDN" \
   "(&(objectClass=posixGroup)(|(cn=$1)(gidNumber=$1)))" gidNumber |
   grep "^gidNumber: " |
   head -n 1 |
