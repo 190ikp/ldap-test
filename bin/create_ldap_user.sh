@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source env/ldap.sh
+source env/ldap_env.sh
 
 # functions are ported from /usr/share/ldapscripts/runtime
 get_last_uid() {
@@ -90,9 +90,9 @@ fi
 
 envsubst \$LDAP_RDN\$_USERNAME\$_SURNAME\$_GIVENNAME\$_UID\$_GID\$_PASSWD_HASH \
   < conf/create_user.ldif |
-ldapadd -x -D "$LDAP_ADMIN_DN" -W
+  ldapadd -x -D "$LDAP_ADMIN_DN" -W
 
 envsubst \$LDAP_RDN\$_USERNAME\$_GROUPNAME < conf/add_user_to_group.ldif |
-  ldapmodify -Q -Y EXTERNAL -H ldapi:///
+  sudo ldapmodify -Q -Y EXTERNAL -H ldapi:///
 
 echo -e "Username: $_USERNAME\nInitial Password: $_USERPASSWD"
