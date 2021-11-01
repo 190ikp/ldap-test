@@ -4,6 +4,7 @@ export COUNTRY=JP
 export STATE=Tokyo
 export LOCATION=Tokyo
 export ORGANIZATION='Example Inc.'
+export ORG_SHORT='example'
 export ORGANIZATION_UNIT='Example Department'
 
 export LDAP_SERVER_FQDN="server-1.example.com"
